@@ -36,7 +36,8 @@ class AIProductController extends Controller
             $productData = $this->aiService->generateProductDescription($category->name, $request->product_name);
             $categories = Category::all();
 
-            return view('admin.ai-products.index', compact('productData', 'category', 'categories'));
+            // Changed to use the preview view instead of index
+            return view('admin.ai-products.preview', compact('productData', 'category', 'categories'));
         } catch (\Exception $e) {
             return back()->with('error', 'Erreur génération : ' . $e->getMessage());
         }
