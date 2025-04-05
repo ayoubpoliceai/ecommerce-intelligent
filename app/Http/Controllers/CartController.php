@@ -54,9 +54,12 @@ class CartController extends Controller
         
         $cart = session()->get('cart', []);
         
+        // Si le produit existe déjà dans le panier, on ajoute à la quantité existante
         if (isset($cart[$request->product_id])) {
             $cart[$request->product_id] += $request->quantity;
-        } else {
+        } 
+        // Sinon, on ajoute le produit avec la quantité demandée
+        else {
             $cart[$request->product_id] = $request->quantity;
         }
         
